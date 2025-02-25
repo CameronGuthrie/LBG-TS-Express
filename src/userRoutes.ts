@@ -94,6 +94,26 @@ router.put("/:id", (req:Request, res: Response) => {
 
 })
 
+/*
+
+            DELETE Method
+
+*/
+
+// DELETE /users/:id
+router.delete("/:id", (req:Request, res:Response) => {
+    const userId = req.params.id;
+    const index = users.findIndex((arrayObject) => arrayObject.id === Number(userId));
+
+    if (index === -1) {
+        res.status(404).json({ message: "user not found" })
+    } else {
+        users.splice(index, 1);
+        res.status(204).send();
+    }
+
+});
+
 export default router;
 
 // FALSEY THINGS
