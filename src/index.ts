@@ -9,6 +9,9 @@ const PORT = 3000;
 // Apply middleware
 app.use(logger);
 
+// Express JSON parser
+app.use(express.json());
+
 // user routes
 app.use("/users", userRoutes);
 
