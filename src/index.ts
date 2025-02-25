@@ -7,7 +7,6 @@ const PORT = 3000;
 
 // Apply middleware
 app.use(logger);
-app.use(errorHandler);
 
 // Error route
 app.get("/error", (req: Request, res: Response) => {
@@ -29,6 +28,9 @@ app.get("/user/:id", (req:Request, res:Response) => {
     const userId = req.params.id;
     res.send(`User ID: ${userId}`);
 });
+
+// Global error handler (placed at bottom of all routes)
+app.use(errorHandler);
 
 // Start the server
 app.listen(PORT, () => {
