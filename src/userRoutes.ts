@@ -63,4 +63,39 @@ router.get("/:id", (req:Request, res:Response) => {
     }
 });
 
+/*
+
+            UPDATE Method
+
+*/
+
+// PUT at /users/:id
+router.put("/:id", (req:Request, res: Response) => {
+    const userId = req.params.id;
+    const { name, age } = req.body;
+    const user = users.find((arrayObject) => arrayObject.id === Number(userId));
+
+    if (!user) {
+        res.status(404).json({message: "user not found!!!!"});
+    } else {
+        user.name = name || user.name; // truthy falsey OR
+        user.age = age ? Number(age) : user.age; // ternary if statement
+       
+        /*
+            if (age == true) {
+                user.age = Number(age);
+            } else {
+                user.age = user.age;
+            }
+        */
+
+        res.json(user);
+    }
+
+})
+
 export default router;
+
+// FALSEY THINGS
+
+// '', ``, "", 0, false, undefined, null, NaN
